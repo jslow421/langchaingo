@@ -29,7 +29,11 @@ type Message struct {
 }
 
 func getProvider(modelID string) string {
-	return strings.Split(modelID, ".")[0]
+	items := strings.Split(modelID, ".")
+	if items[0] == "us" || items[0] == "eu" {
+		return items[1]
+	}
+	return items[0]
 }
 
 // NewClient creates a new Bedrock client.
